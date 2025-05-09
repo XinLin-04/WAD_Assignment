@@ -6,6 +6,8 @@ import LibraryScreen from "./screens/LibraryScreen";
 import StatsScreen from "./screens/StatsScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import LoginScreen from "./screens/LoginScreen";
+import AlbumDetailsScreen from './screens/AlbumDetailsScreen';
+
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -126,12 +128,12 @@ function Navigation() {
         <Stack.Screen
           name="Login"
           component={LoginScreen}
-          options={{ headerShown: false }}
+          options={{headerShown: false}}
         />
         <Stack.Screen
           name="Main"
           component={BottomTabs}
-          options={{ headerShown: false }}
+          options={{headerShown: false}}
         />
         <Stack.Screen
           name="Profile"
@@ -143,9 +145,13 @@ function Navigation() {
             headerTintColor: Colors.text,
           }}
         />
+        <Stack.Screen  
+          name="AlbumDetails" 
+          component={AlbumDetailsScreen}
+          options={{headerShown:false}} />
       </Stack.Navigator>
     </NavigationContainer>
-  )
+  );
 }
 
 const styles = StyleSheet.create({

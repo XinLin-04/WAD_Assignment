@@ -384,3 +384,22 @@ export const getTopAlbums = async (timeRange = 'medium_term', limit = 20) => {
     return [];
   }
 };
+
+// get album details for displaying songs in album screen
+export const getAlbumDetails = async albumId => {
+  try {
+    const token = await getValidToken();
+    const response = await fetch(`${SPOTIFY_API_BASE}/albums/${albumId}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching album details:', error);
+    throw error;
+  }
+};
+

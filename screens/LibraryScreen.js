@@ -1,25 +1,32 @@
-// screens/LibraryScreen.js
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React from 'react';
+import {View, Text, StyleSheet} from 'react-native';
+import {Colors} from '../theme';
 
+// Create a simple placeholder component
 const LibraryScreen = () => {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.text}>LibraryScreen</Text>
-        </View>
-    );
-}
-
-export default LibraryScreen;
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Coming Soon</Text>
+      <Text style={styles.subtitle}>This feature is under development</Text>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#121212',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    text: {
-        color: '#fff',
-    }
-})
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.background,
+  },
+  title: {
+    color: Colors.text,
+    fontSize: 18,
+  },
+  subtitle: {
+    color: Colors.textSecondary,
+    marginTop: 8,
+  },
+});
+
+export default LibraryScreen;
