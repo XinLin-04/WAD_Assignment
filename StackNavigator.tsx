@@ -1,4 +1,5 @@
 // StackNavigator.tsx
+
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from './screens/HomeScreen';
 import SearchScreen from './screens/SearchScreen';
@@ -7,6 +8,7 @@ import LibraryScreen from './screens/LibraryScreen';
 import StatsScreen from './screens/StatsScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import LoginScreen from './screens/LoginScreen';
+import AlbumDetailsScreen from './screens/AlbumDetailsScreen';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -19,7 +21,9 @@ function ProfileAvatar({navigation}) {
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate('Profile')}
+
       style={styles.avatarContainer}>
+      
       <Image
         source={require('./assets/images/UCS_logo.png')}
         style={styles.avatar}
@@ -55,7 +59,9 @@ function BottomTabs() {
           marginTop: -15, // 负边距拉近与图标的距离
           textAlign: 'center',
         },
-      }}>
+      }}
+    >
+
       <Tab.Screen
         name="Home"
         component={HomeScreen}
@@ -152,6 +158,7 @@ function Navigation() {
             headerTintColor: Colors.text,
           }}
         />
+
          <Stack.Screen 
           name="SongDetail" 
           component={SongDetailScreen} 
@@ -159,6 +166,10 @@ function Navigation() {
             headerShown: false,  // We'll handle the header in the component
           }}
         />
+        <Stack.Screen  
+          name="AlbumDetails" 
+          component={AlbumDetailsScreen}
+          options={{headerShown:false}} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -172,8 +183,8 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: Colors.elevatedBackground,
-  },
+    backgroundColor: Colors.elevatedBackground, 
+  }
 });
 
 export default Navigation;

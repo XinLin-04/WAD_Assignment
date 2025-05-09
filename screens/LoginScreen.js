@@ -24,7 +24,8 @@ const LoginScreen = () => {
       'user-library-read',
       'playlist-read-private',
       'playlist-read-collaborative',
-      'user-follow-read'
+      'user-follow-read',
+      'user-read-recently-played',
     ],
     serviceConfiguration: {
       authorizationEndpoint: 'https://accounts.spotify.com/authorize',
