@@ -119,8 +119,12 @@ export const getUserProfile = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-
-    if (response.status === 200) {
+    
+    if (response.status === 204) {
+      console.log('No active device found');
+      return null;
+    } else if (response.status === 200) {
+      console.log('Operation successful');
       return await response.json();
     } else {
       console.error('Failed to get user profile:', response.status);
@@ -147,8 +151,12 @@ export const getTopTracks = async (timeRange = 'medium_term', limit = 20) => {
         },
       },
     );
-
-    if (response.status === 200) {
+    
+    if (response.status === 204) {
+      console.log('No active device found');
+      return null;
+    } else if (response.status === 200) {
+      console.log('Operation successful');
       return await response.json();
     } else {
       console.error('Failed to get top tracks:', response.status);
@@ -175,8 +183,12 @@ export const getTopArtists = async (timeRange = 'medium_term', limit = 20) => {
         },
       },
     );
-
-    if (response.status === 200) {
+    
+    if (response.status === 204) {
+      console.log('No active device found');
+      return null;
+    } else if (response.status === 200) {
+      console.log('Operation successful');
       return await response.json();
     } else {
       console.error('Failed to get top artists:', response.status);
@@ -203,8 +215,12 @@ export const getUserPlaylists = async (limit = 20, offset = 0) => {
         },
       },
     );
-
-    if (response.status === 200) {
+    
+    if (response.status === 204) {
+      console.log('No active device found');
+      return null;
+    } else if (response.status === 200) {
+      console.log('Operation successful');
       return await response.json();
     } else {
       console.error('Failed to get playlists:', response.status);
@@ -238,8 +254,12 @@ export const search = async (
         },
       },
     );
-
-    if (response.status === 200) {
+    
+    if (response.status === 204) {
+      console.log('No active device found');
+      return null;
+    } else if (response.status === 200) {
+      console.log('Operation successful');
       return await response.json();
     } else {
       console.error('Failed to search:', response.status);
@@ -266,8 +286,12 @@ export const getUserFollowing = async (type = 'artist', limit = 1) => {
         },
       },
     );
-
-    if (response.status === 200) {
+    
+    if (response.status === 204) {
+      console.log('No active device found');
+      return null;
+    } else if (response.status === 200) {
+      console.log('Operation successful');
       return await response.json();
     } else {
       console.error('Failed to get user following:', response.status);
@@ -294,7 +318,10 @@ export const getRecentlyPlayed = async (limit = 50) => {
         },
       },
     );
-    if (response.status === 204 || response.status === 200) {
+    if (response.status === 204) {
+      console.log('No active device found');
+      return null;
+    } else if (response.status === 200) {
       console.log('Operation successful');
       return await response.json();
     } else if (response.status === 403) {
@@ -324,8 +351,11 @@ export const getRecentlyPlayedItems = async (limit = 50) => {
         },
       },
     );
-
-    if (response.status === 204 || response.status === 200) {
+    
+    if (response.status === 204) {
+      console.log('No active device found');
+      return null;
+    } else if (response.status === 200) {
       console.log('Operation successful');
       const data = await response.json();
 
@@ -556,8 +586,17 @@ export const getPlaybackState = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-
-    return await handleApiResponse(response, 'getPlaybackState');
+    
+    if (response.status === 204) {
+      console.log('No active device found');
+      return null;
+    } else if (response.status === 200) {
+      console.log('Operation successful');
+      return await response.json();
+    } else {
+      console.error('Failed operation:', response.status);
+      return null;
+    }
   } catch (error) {
     console.error('Error fetching playback state:', error);
     return {error: error.message};
@@ -576,8 +615,17 @@ export const getArtistDetails = async artistId => {
         Authorization: `Bearer ${token}`,
       },
     });
-
-    return await handleApiResponse(response, 'getArtistDetails');
+    
+    if (response.status === 204) {
+      console.log('No active device found');
+      return null;
+    } else if (response.status === 200) {
+      console.log('Operation successful');
+      return await response.json();
+    } else {
+      console.error('Failed operation:', response.status);
+      return null;
+    }
   } catch (error) {
     console.error('Error fetching artist details:', error);
     return {error: error.message};
@@ -597,10 +645,19 @@ export const getArtistAlbums = async (artistId, limit = 20, offset = 0) => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      },
+      }
     );
-
-    return await handleApiResponse(response, 'getArtistAlbums');
+    
+    if (response.status === 204) {
+      console.log('No active device found');
+      return null;
+    } else if (response.status === 200) {
+      console.log('Operation successful');
+      return await response.json();
+    } else {
+      console.error('Failed operation:', response.status);
+      return null;
+    }
   } catch (error) {
     console.error('Error fetching artist albums:', error);
     return {error: error.message};
@@ -620,10 +677,19 @@ export const getArtistTopTracks = async (artistId, market = 'US') => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      },
+      }
     );
-
-    return await handleApiResponse(response, 'getArtistTopTracks');
+    
+    if (response.status === 204) {
+      console.log('No active device found');
+      return null;
+    } else if (response.status === 200) {
+      console.log('Operation successful');
+      return await response.json();
+    } else {
+      console.error('Failed operation:', response.status);
+      return null;
+    }
   } catch (error) {
     console.error('Error fetching artist top tracks:', error);
     return {error: error.message};
@@ -643,10 +709,19 @@ export const getUserSavedAlbums = async (limit = 50) => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      },
+      }
     );
-
-    return await handleApiResponse(response, 'getUserSavedAlbums');
+    
+    if (response.status === 204) {
+      console.log('No active device found');
+      return null;
+    } else if (response.status === 200) {
+      console.log('Operation successful');
+      return await response.json();
+    } else {
+      console.error('Failed operation:', response.status);
+      return null;
+    }
   } catch (error) {
     console.error('Error fetching saved albums:', error);
     return {error: error.message};
@@ -668,11 +743,18 @@ export const getFollowedArtists = async (limit = 50) => {
         },
       },
     );
-
-    const data = await handleApiResponse(response, 'getFollowedArtists');
-    if (data.error) return data;
-
-    return data.artists; // Return the artists object directly
+    
+    if (response.status === 204) {
+      console.log('No active device found');
+      return null;
+    } else if (response.status === 200) {
+      console.log('Operation successful');
+      const data = await response.json();
+      return data.artists; // Return the artists object directly
+    } else {
+      console.error('Failed operation:', response.status);
+      return null;
+    }
   } catch (error) {
     console.error('Error fetching followed artists:', error);
     return {error: error.message};
@@ -694,10 +776,19 @@ export const searchTracks = async (query, limit = 20) => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      },
+      }
     );
-
-    return await handleApiResponse(response, 'searchTracks');
+    
+    if (response.status === 204) {
+      console.log('No active device found');
+      return null;
+    } else if (response.status === 200) {
+      console.log('Operation successful');
+      return await response.json();
+    } else {
+      console.error('Failed operation:', response.status);
+      return null;
+    }
   } catch (error) {
     console.error('Error searching tracks:', error);
     return {error: error.message};
@@ -708,19 +799,47 @@ export const searchTracks = async (query, limit = 20) => {
 export const getPlaylistDetails = async playlistId => {
   try {
     const token = await getValidToken();
-    if (!token) return {error: 'No valid token'};
-
-    const response = await fetch(
-      `${SPOTIFY_API_BASE}/playlists/${playlistId}`,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    if (!token) return null;
+    
+    const response = await fetch(`${SPOTIFY_API_BASE}/albums/${albumId}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
-    );
+    });
+    
+    if (response.status === 204 || response.status === 200) {
+      console.log('Operation successful');
+      return await response.json();
+    } else {
+      console.error('Failed operation:', response.status);
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching album details:', error);
+    return null;
+  }
+};
 
-    return await handleApiResponse(response, 'getPlaylistDetails');
+export const getPlaylistDetails = async (playlistId) => {
+  try {
+    const token = await getValidToken();
+    if (!token) return null;
+    
+    const response = await fetch(`${SPOTIFY_API_BASE}/playlists/${playlistId}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    
+    if (response.status === 204 || response.status === 200) {
+      console.log('Operation successful');
+      return await response.json();
+    } else {
+      console.error('Failed operation:', response.status);
+      return null;
+    }
   } catch (error) {
     console.error('Error fetching playlist details:', error);
     return {error: error.message};
@@ -768,7 +887,16 @@ export const startPlayback = async (
       body: JSON.stringify(body),
     });
 
-    return await handleApiResponse(response, 'startPlayback');
+    if (response.status === 204) {
+      console.log('No active device found');
+      return null;
+    } else if (response.status === 200) {
+      console.log('Operation successful');
+      return true;
+    } else {
+      console.error('Failed operation:', response.status);
+      return false;
+    }
   } catch (error) {
     console.error('Error starting playback:', error);
     return {error: error.message};
@@ -788,7 +916,14 @@ export const pausePlayback = async () => {
       },
     });
 
-    return await handleApiResponse(response, 'pausePlayback');
+    if (response.status === 204) {
+      console.log('No active device found');
+      return null;
+    } else if (response.status === 200) {
+      console.log('Operation successful');
+    } else {
+      console.error('Failed operation:', response.status);
+    }
   } catch (error) {
     console.error('Error pausing playback:', error);
     return {error: error.message};
@@ -808,7 +943,14 @@ export const skipToNext = async () => {
       },
     });
 
-    return await handleApiResponse(response, 'skipToNext');
+    if (response.status === 204) {
+      console.log('No active device found');
+      return null;
+    } else if (response.status === 200) {
+      console.log('Operation successful');
+    } else {
+      console.error('Failed operation:', response.status);
+    }
   } catch (error) {
     console.error('Error skipping to next track:', error);
     return {error: error.message};
@@ -828,7 +970,14 @@ export const skipToPrevious = async () => {
       },
     });
 
-    return await handleApiResponse(response, 'skipToPrevious');
+    if (response.status === 204) {
+      console.log('No active device found');
+      return null;
+    } else if (response.status === 200) {
+      console.log('Operation successful');
+    } else {
+      console.error('Failed operation:', response.status);
+    }
   } catch (error) {
     console.error('Error skipping to previous track:', error);
     return {error: error.message};
@@ -851,7 +1000,14 @@ export const seekToPosition = async positionMs => {
       },
     );
 
-    return await handleApiResponse(response, 'seekToPosition');
+    if (response.status === 204) {
+      console.log('No active device found');
+      return null;
+    } else if (response.status === 200) {
+      console.log('Operation successful');
+    } else {
+      console.error('Failed operation:', response.status);
+    }
   } catch (error) {
     console.error('Error seeking:', error);
     return {error: error.message};
